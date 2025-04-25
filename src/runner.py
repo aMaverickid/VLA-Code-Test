@@ -3,14 +3,19 @@ import gymnasium as gym
 import time
 from mani_skill.utils.wrappers.record import RecordEpisode
 # TODO: Change this to import your env
-from card_stack_env import CardStackEnv
+from wzj.restore_box_env import PegInsertionSideEnv
+from wzj.dig_treasure_env import DigTreasureEnv
+from wzj.stack_tower import StackTowerEnv
 
-def generate_videos(n_episodes=10, max_steps_per_episode=100, video_dir="card_stack_videos"):
+def generate_videos(n_episodes=10, max_steps_per_episode=100, video_dir="stack_tower_videos"):
     """
     Generate and save videos of random agent interactions in the CardStack environment.
     """
     # TODO: Change this to make your env
-    env = gym.make("CardStack-v1", obs_mode="state", render_mode="rgb_array")
+    # env = gym.make("CardStack-v1", obs_mode="state", render_mode="rgb_array")
+    # env = gym.make("RestoreBox-v1", obs_mode="state", render_mode="rgb_array")
+    # env = gym.make("DigTreasure-v1", obs_mode="state", render_mode="rgb_array")
+    env = gym.make("StackTower-v1", obs_mode="state", render_mode="rgb_array")
     video_dir = os.path.join(video_dir, time.strftime("%Y%m%d-%H%M%S"))
     os.makedirs(video_dir, exist_ok=True)
 
@@ -26,4 +31,4 @@ def generate_videos(n_episodes=10, max_steps_per_episode=100, video_dir="card_st
     env.close()
 
 if __name__ == "__main__":
-    generate_videos(n_episodes=10)
+    generate_videos(n_episodes=2)
